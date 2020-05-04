@@ -9,19 +9,16 @@ import com.brewhog.android.daggerretrofitauthorization.R
 import com.brewhog.android.daggerretrofitauthorization.databinding.ActivityMainBinding
 import com.brewhog.android.daggerretrofitauthorization.network.Controller
 import com.brewhog.android.daggerretrofitauthorization.network.HeaderInterceptor
+import dagger.android.AndroidInjection
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
-
+    @Inject
+    lateinit var loginViewModel : LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        val headerInterceptor = HeaderInterceptor(sharedPreferences)
-        val controller = Controller(headerInterceptor)
-        val api = controller.createService()
-
-        val loginRepository = LoginRepository(api,sharedPreferences)
-        val loginViewModel = LoginViewModel(loginRepository)
 
         val activityBinding = DataBindingUtil.setContentView<ActivityMainBinding>(this,R.layout.activity_main)
         activityBinding.loginViewModel = loginViewModel

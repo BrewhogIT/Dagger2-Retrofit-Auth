@@ -4,8 +4,9 @@ import android.content.SharedPreferences
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
+import javax.inject.Inject
 
-class HeaderInterceptor(var sharedPreferences: SharedPreferences) : Interceptor {
+class HeaderInterceptor @Inject constructor (var sharedPreferences: SharedPreferences) : Interceptor {
     var tokenString : String? = null
 
     override fun intercept(chain: Interceptor.Chain): Response {

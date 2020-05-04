@@ -4,8 +4,9 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.brewhog.android.daggerretrofitauthorization.model.Login
+import javax.inject.Inject
 
-class LoginViewModel(val loginRepository: LoginRepository) : ViewModel() {
+class LoginViewModel @Inject constructor (val loginRepository: LoginRepository) : ViewModel() {
     val email : MutableLiveData<String> = MutableLiveData()
     val password : MutableLiveData<String> = MutableLiveData()
     val check : MutableLiveData<Boolean> = MutableLiveData()
