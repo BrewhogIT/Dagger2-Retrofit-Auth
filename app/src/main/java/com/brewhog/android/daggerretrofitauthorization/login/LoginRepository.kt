@@ -13,8 +13,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class LoginRepository(var api: Api, var sharedPreferences: SharedPreferences) {
-    var mainActivity : MainActivity? = null
-    var check = false
+    //var mainActivity : MainActivity? = null
+    //var check = false
 
     fun apiLogin(login: Login, view: View){
         api.login(login).enqueue(object : Callback<Token>{
@@ -24,9 +24,11 @@ class LoginRepository(var api: Api, var sharedPreferences: SharedPreferences) {
             }
 
             override fun onResponse(call: Call<Token>?, response: Response<Token>?) {
+                println("response header is ${response?.code()}")
                 sharedPreferences.edit()
                     .putString("token",response?.body()?.token)
                     .apply()
+                println("onResponse, response body is ${response?.body()}")
                 println("token ===>>> ${sharedPreferences.getString("token","default")}")
 
                 newActivity(view)

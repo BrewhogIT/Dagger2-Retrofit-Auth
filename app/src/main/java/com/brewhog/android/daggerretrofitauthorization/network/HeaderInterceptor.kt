@@ -7,10 +7,10 @@ import okhttp3.Response
 import javax.inject.Inject
 
 class HeaderInterceptor @Inject constructor (var sharedPreferences: SharedPreferences) : Interceptor {
-    var tokenString : String? = null
+    //var tokenString : String? = null
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        val editor = sharedPreferences.edit()
+        //val editor = sharedPreferences.edit()
         val original = chain.request()
 
         println(original.url())

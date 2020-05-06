@@ -1,7 +1,13 @@
 package com.brewhog.android.daggerretrofitauthorization.module
 
+import android.app.Activity
 import android.content.SharedPreferences
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.brewhog.android.daggerretrofitauthorization.login.LoginRepository
+import com.brewhog.android.daggerretrofitauthorization.login.LoginViewModel
+import com.brewhog.android.daggerretrofitauthorization.login.MainActivity
+import com.brewhog.android.daggerretrofitauthorization.login.ViewModelFactory
 import com.brewhog.android.daggerretrofitauthorization.network.Api
 import com.brewhog.android.daggerretrofitauthorization.network.Controller
 import com.brewhog.android.daggerretrofitauthorization.network.HeaderInterceptor
@@ -11,6 +17,7 @@ import javax.inject.Singleton
 
 @Module
 class RetrofitModule {
+
     @Singleton
     @Provides
     fun getController(headerInterceptor: HeaderInterceptor):Controller{
