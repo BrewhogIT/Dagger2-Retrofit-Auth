@@ -4,7 +4,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.view.View
 import android.widget.Toast
-import com.brewhog.android.daggerretrofitauthorization.MotoActivity
+import com.brewhog.android.daggerretrofitauthorization.moto.MotoActivity
 import com.brewhog.android.daggerretrofitauthorization.model.Login
 import com.brewhog.android.daggerretrofitauthorization.model.Token
 import com.brewhog.android.daggerretrofitauthorization.network.Api
@@ -24,7 +24,7 @@ class LoginRepository(var api: Api, var sharedPreferences: SharedPreferences) {
             }
 
             override fun onResponse(call: Call<Token>?, response: Response<Token>?) {
-                println("response header is ${response?.code()}")
+                println("response code is ${response?.code()}")
                 sharedPreferences.edit()
                     .putString("token",response?.body()?.token)
                     .apply()
@@ -38,7 +38,8 @@ class LoginRepository(var api: Api, var sharedPreferences: SharedPreferences) {
     }
 
     fun newActivity(view : View){
-        val intent = Intent(view.context,MotoActivity::class.java)
+        val intent = Intent(view.context,
+            MotoActivity::class.java)
         view.context.startActivity(intent)
     }
 

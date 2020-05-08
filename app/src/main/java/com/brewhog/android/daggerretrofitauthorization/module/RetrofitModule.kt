@@ -8,6 +8,7 @@ import com.brewhog.android.daggerretrofitauthorization.login.LoginRepository
 import com.brewhog.android.daggerretrofitauthorization.login.LoginViewModel
 import com.brewhog.android.daggerretrofitauthorization.login.MainActivity
 import com.brewhog.android.daggerretrofitauthorization.login.ViewModelFactory
+import com.brewhog.android.daggerretrofitauthorization.moto.MotoRepository
 import com.brewhog.android.daggerretrofitauthorization.network.Api
 import com.brewhog.android.daggerretrofitauthorization.network.Controller
 import com.brewhog.android.daggerretrofitauthorization.network.HeaderInterceptor
@@ -32,7 +33,13 @@ class RetrofitModule {
 
     @Singleton
     @Provides
-    fun getRepository(api : Api, sharedPreferencesModule: SharedPreferences) : LoginRepository{
+    fun getLoginRepository(api : Api, sharedPreferencesModule: SharedPreferences) : LoginRepository{
         return LoginRepository(api,sharedPreferencesModule)
+    }
+
+    @Singleton
+    @Provides
+    fun getMotoRepository(api: Api) : MotoRepository{
+        return MotoRepository(api)
     }
 }
