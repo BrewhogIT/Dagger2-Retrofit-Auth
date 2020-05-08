@@ -1,10 +1,11 @@
-package com.brewhog.android.daggerretrofitauthorization.login
+package com.brewhog.android.daggerretrofitauthorization.util
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.brewhog.android.daggerretrofitauthorization.login.LoginRepository
+import com.brewhog.android.daggerretrofitauthorization.login.LoginViewModel
 import com.brewhog.android.daggerretrofitauthorization.moto.MotoRepository
 import com.brewhog.android.daggerretrofitauthorization.moto.MotoViewModel
-import java.util.*
 import javax.inject.Inject
 
 class ViewModelFactory @Inject constructor (val loginRepository: LoginRepository,
@@ -13,7 +14,9 @@ class ViewModelFactory @Inject constructor (val loginRepository: LoginRepository
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(LoginViewModel::class.java)){
-            return LoginViewModel(loginRepository) as T
+            return LoginViewModel(
+                loginRepository
+            ) as T
         }else if (modelClass.isAssignableFrom(MotoViewModel::class.java)){
             return MotoViewModel(motoRepository) as T
         }

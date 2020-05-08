@@ -1,16 +1,12 @@
 package com.brewhog.android.daggerretrofitauthorization.login
 
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.preference.PreferenceManager
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.brewhog.android.daggerretrofitauthorization.R
 import com.brewhog.android.daggerretrofitauthorization.databinding.ActivityMainBinding
-import com.brewhog.android.daggerretrofitauthorization.network.Controller
-import com.brewhog.android.daggerretrofitauthorization.network.HeaderInterceptor
+import com.brewhog.android.daggerretrofitauthorization.util.ViewModelFactory
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 

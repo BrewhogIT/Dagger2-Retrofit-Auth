@@ -3,6 +3,7 @@ package com.brewhog.android.daggerretrofitauthorization.util
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.brewhog.android.daggerretrofitauthorization.R
 import com.brewhog.android.daggerretrofitauthorization.databinding.ItemMotoBinding
@@ -11,8 +12,10 @@ import com.brewhog.android.daggerretrofitauthorization.model.Moto
 class MotoAdapter(motoList: List<Moto>) : RecyclerView.Adapter<MotoHolder>() {
     var motoList = motoList
     set(value) {
+        val diffUtilCallback = DiffUtilCallback(value,field)
+        val result = DiffUtil.calculateDiff(diffUtilCallback)
         field = value
-        notifyDataSetChanged()
+        result.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MotoHolder {
