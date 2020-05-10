@@ -24,14 +24,20 @@ class LoginRepository(var api: Api, var sharedPreferences: SharedPreferences) {
             }
 
             override fun onResponse(call: Call<Token>?, response: Response<Token>?) {
-                println("response code is ${response?.code()}")
-                sharedPreferences.edit()
-                    .putString("token",response?.body()?.token)
-                    .apply()
-                println("onResponse, response body is ${response?.body()}")
-                println("token ===>>> ${sharedPreferences.getString("token","default")}")
+                if(response?.isSuccessful == true ){
+                    println("response code is ${response?.code()}")
+                    sharedPreferences.edit()
+                        .putString("token",response?.body()?.token)
+                        .apply()
+                    println("onResponse, response body is ${response?.body()}")
+                    println("token ===>>> ${sharedPreferences.getString("token","default")}")
 
-                newActivity(view)
+                    newActivity(view)
+                }else{
+                    Toast.makeText(view.context,"ERROR",Toast.LENGTH_LONG).show()
+                }
+
+
             }
 
         })
